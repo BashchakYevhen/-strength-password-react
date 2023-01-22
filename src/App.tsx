@@ -2,45 +2,28 @@ import React from 'react';
 import { Box } from "@mui/material"
 import PasswordInput from './components/passwordInput/passwordInput';
 import StrengthIndicator from './components/strengthIndicator/strangthIndicator';
-import { useState } from "react"
-
+import { useState } from "react";
 
 const App: React.FC = () => {
-  const [passwordForce, setPasswordForce] = useState<number>(999)
-  const colors = ["gray", "gray", "gray"]
-  switch (passwordForce) {
-    case 1:
-      for (let index = 0; index < passwordForce; index++) {
-        colors.splice(0, passwordForce, "red")
-      }
-      break;
-    case 2:
-      for (let index = 0; index < passwordForce; index++) {
-        colors.splice(0, passwordForce, "yellow", "yellow")
-      }
-      break;
-    case 3:
-      for (let index = 0; index < passwordForce; index++) {
-        colors.splice(0, passwordForce, "green", "green", "green")
-      }
-      break;
-    case 0:
-      for (let index = 0; index < 3; index++) {
-        colors.splice(0, 3, "red", "red", "red")
-      }
-      break;
-    default:
-      for (let index = 0; index < 3; index++) {
-        colors.splice(0, 3, "gray", "gray", "gray")
-      }
-      break;
+  const [passwordForce, setPasswordForce] = useState<number>(0)
+  const getClassName = (passwordForce: number) => {
+    switch (passwordForce) {
+      case 1:
+        return "short"
+      case 2:
+        return "weak";
+      case 3:
+        return "middle";
+      case 4:
+        return "strong"
+      default:
+        return ''
+    }
   }
-
-
   return (
     <Box sx={{ my: "20px", mx: 'auto' }}>
       <PasswordInput setPasswordForce={setPasswordForce} />
-      <StrengthIndicator colors={colors} />
+      <StrengthIndicator getClass={getClassName(passwordForce)} />
     </Box>
   );
 }

@@ -1,0 +1,24 @@
+.list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.item {
+  margin-right: 5px;
+  width: 65px;
+  height: 3px;
+  background-color: grey;
+}
+.item.short {
+  background-color: red;
+}
+.item.weak {
+  background-color: red;
+}
+.item.middle {
+  background-color: yellow;
+}
+.item.strong {
+  background-color: green;
+}

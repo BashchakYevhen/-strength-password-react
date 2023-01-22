@@ -1,20 +1,48 @@
-import { List } from "@mui/material";
-import ListItem from "@mui/material/ListItem";
-interface IColors {
-    colors: string[]
+import "./style.css"
+import { useRef } from "react"
+
+interface IClass {
+    getClass: string
 }
+const StrengthIndicator: React.FC<IClass> = ({ getClass }) => {
+    const first = useRef<HTMLLIElement>(null)
+    const second = useRef<HTMLLIElement>(null)
+    const third = useRef<HTMLLIElement>(null)
 
-
-
-const StrengthIndicator: React.FC<IColors> = ({ colors }) => {
+    switch (getClass) {
+        case "short":
+            first.current!.className = "item short"
+            second.current!.className = " item short"
+            third.current!.className = " item short"
+            break;
+        case "weak":
+            first.current!.className = "item weak"
+            second.current!.className = " item "
+            third.current!.className = " item "
+            break
+        case "middle":
+            first.current!.className = "item middle"
+            second.current!.className = " item middle"
+            third.current!.className = " item "
+            break
+        case "strong":
+            first.current!.className = "item strong"
+            second.current!.className = " item strong"
+            third.current!.className = " item strong"
+            break
+        case "":
+            first.current!.className = "item "
+            second.current!.className = " item "
+            third.current!.className = " item "
+            break;
+    }
 
     return (
-        <List sx={{ display: "flex", gap: "10px" }}>
-            <ListItem sx={{ width: "50px", height: "1px", backgroundColor: `${colors[0]}`, borderRadius: "5px", padding: "2px" }}></ListItem>
-            <ListItem sx={{ width: "50px", height: "1px", backgroundColor: `${colors[1]}`, borderRadius: "5px", padding: "2px" }}></ListItem>
-            <ListItem sx={{ width: "50px", height: "1px", backgroundColor: `${colors[2]}`, borderRadius: "5px", padding: "2px" }}></ListItem>
-
-        </List>
+        <ul className="list" >
+            <li ref={first} className="item" />
+            <li ref={second} className="item" />
+            <li ref={third} className="item" />
+        </ul>
     )
 }
 export default StrengthIndicator
